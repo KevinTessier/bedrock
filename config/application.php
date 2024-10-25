@@ -122,7 +122,13 @@ Config::define('DISALLOW_FILE_EDIT', true);
 Config::define('DISALLOW_FILE_MODS', true);
 
 // Limit the number of post revisions
-Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? true);
+Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? 10);
+
+// Limit type interval autosave post
+Config::define('AUTOSAVE_INTERVAL', env('AUTOSAVE_INTERVAL') ??  360);
+
+// Active cache wp
+Config::define('WP_CACHE', env('WP_CACHE') ??  true);
 
 /**
  * Debugging Settings

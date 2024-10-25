@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ee2e60cdeb62860945ce1bc396566de",
+    "content-hash": "6db918101487e330e5b0918234c41ba0",
     "packages": [
         {
             "name": "composer/installers",
@@ -1088,22 +1088,58 @@
             "time": "2024-07-20T21:52:34+00:00"
         },
         {
-            "name": "wpackagist-theme/twentytwentyfour",
-            "version": "1.2",
+            "name": "wpackagist-plugin/contact-form-7",
+            "version": "5.9.8",
             "source": {
                 "type": "svn",
-                "url": "https://themes.svn.wordpress.org/twentytwentyfour/",
-                "reference": "1.2"
+                "url": "https://plugins.svn.wordpress.org/contact-form-7/",
+                "reference": "tags/5.9.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/twentytwentyfour.1.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/contact-form-7.5.9.8.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
-            "type": "wordpress-theme",
-            "homepage": "https://wordpress.org/themes/twentytwentyfour/"
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/contact-form-7/"
+        },
+        {
+            "name": "wpackagist-plugin/contact-form-cfdb7",
+            "version": "1.2.7",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/contact-form-cfdb7/",
+                "reference": "tags/1.2.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/contact-form-cfdb7.1.2.7.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/contact-form-cfdb7/"
+        },
+        {
+            "name": "wpackagist-plugin/hcaptcha-for-forms-and-more",
+            "version": "4.6.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/hcaptcha-for-forms-and-more/",
+                "reference": "tags/4.6.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/hcaptcha-for-forms-and-more.4.6.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/hcaptcha-for-forms-and-more/"
         }
     ],
     "packages-dev": [
