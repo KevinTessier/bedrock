@@ -32,6 +32,19 @@
     {
       "type": "path",
       "url": "/home/kevint/Develop/000-R&D/002-wordpress-plugins/starter-plugin/"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "kt/acf-pro",
+        "version": "6.3.11",
+        "type": "wordpress-plugin",
+        "source": {
+          "url": "https://github.com/KevinTessier/advancedcustomfields.git",
+          "type": "git",
+          "reference": "main"
+        }
+      }
     }
   ],
   "require": {
@@ -41,15 +54,18 @@
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "6.6.2",
+    "roots/wordpress": "^6.7.0",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.2.0",
-    "wpackagist-plugin/contact-form-7": "^5.9",
-    "wpackagist-plugin/contact-form-cfdb7": "^1.2",
-    "wpackagist-plugin/hcaptcha-for-forms-and-more": "^4.6"
+    "wpackagist-plugin/hcaptcha-for-forms-and-more": "^4.6",
+    "roots/acorn": "^4.3",
+    "log1x/acf-composer": "^3.2",
+    "kt/acf-pro": "*",
+    "log1x/crumb": "^1.1",
+    "blade-ui-kit/blade-icons": "^1.7"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.7.1",
+    "squizlabs/php_codesniffer": "^3.11",
     "roave/security-advisories": "dev-latest"
   },
   "config": {
@@ -71,6 +87,12 @@
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
+    "post-root-package-install": [
+      "php -r \"copy('.env.example', '.env');\""
+    ],
+    "post-autoload-dump": [
+      "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
+    ],
     "test": [
       "phpcs"
     ]
