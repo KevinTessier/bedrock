@@ -63,12 +63,11 @@
     "kt/acf-pro": "*",
     "log1x/crumb": "^1.1",
     "blade-ui-kit/blade-icons": "^1.7",
-    "log1x/poet": "^2.1"
+    "log1x/poet": "^2.1",
     "wpackagist-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.11",
-    "roave/security-advisories": "dev-latest"
     "roave/security-advisories": "dev-latest",
     "laravel/pint": "^1.18"
   },
