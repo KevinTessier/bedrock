@@ -19,5 +19,4 @@
     </footer>
   @endif
 
-  @php(comments_template())
 </article>
