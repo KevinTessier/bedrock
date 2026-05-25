@@ -16,7 +16,10 @@
       "defaultDuotone": false,
       "defaultGradients": false,
       "defaultPalette": false,
-      "duotone": []
+      "duotone": [],
+      "palette": [
+        { "name": "Beige", "slug": "beige", "color": "#F2F1E3" }
+      ]
     },
     "custom": {
       "spacing": {},

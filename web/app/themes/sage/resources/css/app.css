@@ -1,8 +1,8 @@
-@import 'tailwindcss' theme(static);
+@import 'tailwindcss';
 @source '../../app/**/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
 @theme static {
-    --color-beige: #F2F1E3;
+    --color-beige: oklch(95% 0.02 100);
 }

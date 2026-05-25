@@ -28,10 +28,10 @@ export default defineConfig({
     // Generate the theme.json file in the public/build/assets directory
     // based on the Tailwind config and the theme.json file from base theme folder
     wordpressThemeJson({
-      disableTailwindColors: false,
-      disableTailwindFonts: false,
-      disableTailwindFontSizes: false,
-      disableTailwindBorderRadius: false,
+      disableTailwindColors: true,
+      disableTailwindFonts: true,
+      disableTailwindFontSizes: true,
+      disableTailwindBorderRadius: true,
     }),
   ],
   resolve: {

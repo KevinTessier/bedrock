@@ -109,7 +109,7 @@ add_filter('style_loader_src', function ($src) {
  * The theme uses Tailwind, block-library styles are unnecessary for visitors.
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_dequeue_style('global-styles');
+    // wp_dequeue_style('global-styles');
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
     wp_dequeue_style('classic-theme-styles');
