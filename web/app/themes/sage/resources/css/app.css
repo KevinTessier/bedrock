@@ -294,6 +294,44 @@
   }
 }
 
+/* === Layout de contenu : alignfull / alignwide (sans vw, scrollbar-safe) ===
+   Le contenu normal est centré à contentSize ; .alignwide -> wideSize ;
+   .alignfull -> bord à bord (fond de couleur pleine largeur).
+   Mappe directement les classes d'alignement de Gutenberg. */
+.content-grid {
+  --cg-pad: 1rem;
+  /* La colonne "content" suit les paliers du `.container` Tailwind (cf. @media plus bas).
+     En dessous de 40rem, le min() la rend fluide (= container à 100%). */
+  --cg-content: 40rem;
+  --cg-wide: var(--wp--style--global--wide-size, 96rem);
+
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--cg-pad), 1fr)
+    [wide-start] minmax(0, calc((var(--cg-wide) - var(--cg-content)) / 2))
+    [content-start] min(100% - var(--cg-pad) * 2, var(--cg-content)) [content-end]
+    minmax(0, calc((var(--cg-wide) - var(--cg-content)) / 2)) [wide-end]
+    minmax(var(--cg-pad), 1fr) [full-end];
+}
+
+.content-grid > * {
+  grid-column: content;
+}
+
+.content-grid > .alignwide {
+  grid-column: wide;
+}
+
+.content-grid > .alignfull {
+  grid-column: full;
+}
+
+/* Paliers identiques au `.container` de Tailwind (sm/md/lg/xl/2xl) */
+@media (width >= 48rem) { .content-grid { --cg-content: 48rem; } }
+@media (width >= 64rem) { .content-grid { --cg-content: 64rem; } }
+@media (width >= 80rem) { .content-grid { --cg-content: 80rem; } }
+@media (width >= 96rem) { .content-grid { --cg-content: 96rem; } }
+
 /* === Pagination (archives) === */
 .pagination ul.page-numbers {
   display: flex;

@@ -12,7 +12,7 @@ class Card extends Composer
      * @var array
      */
     protected static $views = [
-        'partials.content-post',
+        'partials.card-post',
     ];
 
     /**

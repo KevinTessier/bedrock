@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.page-header')
+  <div class="content-grid">
+    @include('partials.page-header')
 
   @if (!have_posts())
     <x-alert type="warning">
@@ -15,14 +16,15 @@
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       @while (have_posts())
         @php(the_post())
-          @includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
+          @includeFirst(['partials.card-' . get_post_type(), 'partials.card'])
       @endwhile
     </div>
   @endif
 
   @if ($pagination)
-    <nav class="pagination py-4" aria-label="{{ __('Pagination', 'sage') }}">
-      {!! $pagination !!}
-    </nav>
-  @endif
+      <nav class="pagination py-4" aria-label="{{ __('Pagination', 'sage') }}">
+        {!! $pagination !!}
+      </nav>
+    @endif
+  </div>
 @endsection

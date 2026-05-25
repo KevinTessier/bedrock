@@ -1,5 +1,6 @@
 <header id="site-header" class="relative z-50 border-b border-black/10 bg-white" role="banner">
-  <div class="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
+  <div class="content-grid py-3">
+    <div class="flex items-center justify-between gap-4">
     {{-- Logo / nom du site --}}
     <div class="site-branding shrink-0">
       @if (has_custom_logo())
@@ -44,5 +45,6 @@
         ]) !!}
       </nav>
     @endif
+    </div>
   </div>
 </header>
