@@ -113,7 +113,9 @@ function initNavigation() {
 
     // Close sibling submenus at the same level.
     item?.parentElement
-      ?.querySelectorAll(':scope > .menu-item-has-children.is-open > .submenu-toggle')
+      ?.querySelectorAll(
+        ':scope > .menu-item-has-children.is-open > .submenu-toggle',
+      )
       .forEach((sibling) => sibling !== button && closeSubmenu(sibling));
 
     button.setAttribute('aria-expanded', 'true');
@@ -128,9 +130,12 @@ function initNavigation() {
   });
 
   const openSubmenuButtons = () =>
-    submenuToggles.filter((button) => button.getAttribute('aria-expanded') === 'true');
+    submenuToggles.filter(
+      (button) => button.getAttribute('aria-expanded') === 'true',
+    );
 
-  const closeAllSubmenus = () => openSubmenuButtons().forEach((button) => closeSubmenu(button));
+  const closeAllSubmenus = () =>
+    openSubmenuButtons().forEach((button) => closeSubmenu(button));
 
   // --- Shared keyboard / outside handlers ------------------------------------
   document.addEventListener('keydown', (event) => {
@@ -143,7 +148,9 @@ function initNavigation() {
     if (openButtons.length) {
       // Close the INNERMOST open submenu containing the focus first: its toggle
       // is the one owned by the nearest open parent item (handles deep nesting).
-      const nearestOpenItem = document.activeElement?.closest('.menu-item-has-children.is-open');
+      const nearestOpenItem = document.activeElement?.closest(
+        '.menu-item-has-children.is-open',
+      );
       const target =
         nearestOpenItem?.querySelector(':scope > .submenu-toggle') ||
         openButtons[openButtons.length - 1];
