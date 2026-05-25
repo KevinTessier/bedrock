@@ -64,4 +64,56 @@ class Post extends Composer
             'after' => '</p>',
         ]);
     }
+    /**
+     * The first category of the current post.
+     */
+    public function category(): ?\WP_Term
+    {
+        return get_the_category(get_the_ID())[0] ?? null;
+    }
+
+    /**
+     * The card thumbnail markup (empty string if no featured image).
+     * Alt is intentionally empty: the title link carries the accessible name.
+     */
+    public function thumbnail(): string
+    {
+        return get_the_post_thumbnail(get_the_ID(), 'card-thumbnail', [
+            'class' => 'h-full w-full object-cover transition-transform duration-300 group-hover:scale-105',
+            'alt' => '',
+            'loading' => 'lazy',
+        ]);
+    }
+
+    /**
+     * The post permalink.
+     */
+    public function permalink(): string
+    {
+        return (string) get_permalink();
+    }
+
+    /**
+     * The post excerpt.
+     */
+    public function excerpt(): string
+    {
+        return get_the_excerpt();
+    }
+
+    /**
+     * Human-readable publish date.
+     */
+    public function date(): string
+    {
+        return get_the_date();
+    }
+
+    /**
+     * ISO 8601 publish date (for the <time datetime> attribute).
+     */
+    public function dateIso(): string
+    {
+        return get_the_date('c');
+    }
 }

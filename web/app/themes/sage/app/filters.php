@@ -115,6 +115,35 @@ add_action('wp_enqueue_scripts', function () {
     wp_dequeue_style('classic-theme-styles');
 }, 100);
 
+/**
+ * [CSS cascade] Place les styles globaux de WordPress (issus de theme.json) dans
+ * un cascade layer « wordpress », pour que les utilities Tailwind les surchargent
+ * SANS !important.
+ *
+ * Ordre des layers (déclaré tôt dans <head>, avant l'impression des styles) :
+ *   theme < base < wordpress < components < utilities
+ * => theme.json (wordpress) bat le Preflight de Tailwind (base) : le contenu garde
+ *    sa typo. MAIS n'importe quelle utility (ex. my-0, text-lg) bat theme.json.
+ */
+add_action('wp_head', function () {
+    echo "<style>@layer theme,base,wordpress,components,utilities;</style>\n";
+}, 0);
+
+add_action('wp_enqueue_scripts', function () {
+    $styles = wp_styles();
+
+    if (empty($styles->registered['global-styles']->extra['after'])) {
+        return;
+    }
+
+    $css = implode("\n", array_filter(
+        (array) $styles->registered['global-styles']->extra['after'],
+        'is_string'
+    ));
+
+    $styles->registered['global-styles']->extra['after'] = ['@layer wordpress{'.$css.'}'];
+}, 100);
+
 
 /**
  * [RGESN 5.3] Block Google Fonts loaded by WordPress

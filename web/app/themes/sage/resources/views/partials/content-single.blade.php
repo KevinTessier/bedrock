@@ -1,6 +1,6 @@
 <article @php(post_class('h-entry'))>
-  <header>
-    <h1 class="p-name">
+  <header class="py-4">
+    <h1 class="text-4xl font-bold">
       {!! $title !!}
     </h1>
 
@@ -10,13 +10,5 @@
   <div class="e-content">
     @php(the_content())
   </div>
-
-  @if ($pagination())
-    <footer>
-      <nav class="page-nav" aria-label="Page">
-        {!! $pagination !!}
-      </nav>
-    </footer>
-  @endif
 
 </article>

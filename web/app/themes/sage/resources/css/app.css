@@ -1,3 +1,8 @@
+/* Ordre des cascade layers : les styles WordPress (theme.json) sont injectés
+   dans le layer `wordpress` (cf. app/filters.php), entre `base` et `components`,
+   pour que les utilities Tailwind les surchargent sans !important. */
+@layer theme, base, wordpress, components, utilities;
+
 @import 'tailwindcss';
 @source '../../app/**/*.php';
 @source '../**/*.blade.php';
