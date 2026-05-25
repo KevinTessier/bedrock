@@ -20,7 +20,7 @@
 
     @include('sections.header')
 
-    <main id="main" class="container mx-auto px-4" tabindex=-1>
+    <main id="main" class="container mx-auto px-4 py-8" tabindex=-1>
       @yield('content')
     </main>
 

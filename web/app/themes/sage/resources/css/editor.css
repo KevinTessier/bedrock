@@ -1,1 +1,49 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+/* ==========================================================================
+   Gutenberg Editor Styles
+   Visual distinction for blocks in the editor
+   ========================================================================== */
+
+.editor-visual-editor__post-title-wrapper {
+  @apply mb-12 text-4xl font-bold;
+}
+
+.block-editor-block-list__layout.is-root-container > :where(:not(.alignleft):not(.alignright):not(.alignfull))
+{
+  @apply max-w-7xl!;
+}
+
+.editor-styles-wrapper > div {
+  @apply mx-auto w-full;
+}
+
+/* Block visibility - subtle background to identify blocks */
+.wp-block-group,
+.wp-block-columns,
+.wp-block-column,
+.wp-block-paragraph,
+.wp-block-image,
+.wp-block-list,
+.wp-block-heading,
+.wp-block-media-text,
+.wp-block-gallery,
+.wp-block-embed,
+.wp-block-spacer,
+.wp-block-html {
+  background: rgba(222 225 219 / 50%);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  border: 1px solid rgba(222 225 219 / 70%);
+  border-radius: 0.5rem;
+}
+
+.wp-block-post-title {
+  @apply leading-none;
+}
+
+.wp-block-list {
+  li {
+    @apply list-item;
+  }
+}

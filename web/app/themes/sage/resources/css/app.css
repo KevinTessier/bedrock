@@ -193,3 +193,31 @@
     }
   }
 }
+
+/* === Blocs de contenu : correctifs layout responsive ===
+   Hors @layer pour primer sur les styles core. Compense le CSS des blocs
+   core déqueué (filters.php) : theme.json gère le décoratif, mais pas les
+   @media (cf. _global.theme.js). */
+
+/* Média & texte : grille côte à côte */
+.wp-block-media-text {
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 781px) {
+  /* Colonnes : empilement sur mobile (sauf opt-out is-not-stacked-on-mobile) */
+  .wp-block-columns:not(.is-not-stacked-on-mobile) {
+    flex-wrap: wrap;
+  }
+  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
+    flex-basis: 100% !important;
+  }
+
+  /* Média & texte : empilement sur mobile */
+  .wp-block-media-text.is-stacked-on-mobile {
+    grid-template-columns: 1fr;
+  }
+}
