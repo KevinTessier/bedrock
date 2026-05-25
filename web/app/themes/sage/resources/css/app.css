@@ -2,3 +2,7 @@
 @source '../../app/**/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+
+@theme static {
+    --color-beige: #F2F1E3;
+}

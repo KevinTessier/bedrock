@@ -28,7 +28,6 @@ export default defineConfig({
     // Generate the theme.json file in the public/build/assets directory
     // based on the Tailwind config and the theme.json file from base theme folder
     wordpressThemeJson({
-      partials: ['resources/views/blocks'],
       disableTailwindColors: false,
       disableTailwindFonts: false,
       disableTailwindFontSizes: false,
@@ -42,8 +41,5 @@ export default defineConfig({
       '@fonts': '/resources/fonts',
       '@images': '/resources/images',
     },
-  },
-  build: {
-    minify: 'terser',
   },
 });
