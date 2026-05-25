@@ -39,6 +39,14 @@
     "roots/wordpress": "7.0",
     "roots/wp-config": "^1.0",
     "vlucas/phpdotenv": "^5.0",
+    "wp-plugin/broken-link-checker": "^2.4",
+    "wp-plugin/hcaptcha-for-forms-and-more": "^4.26",
+    "wp-plugin/imagify": "^2.2",
+    "wp-plugin/query-monitor": "^4.0",
+    "wp-plugin/safe-svg": "^2.4",
+    "wp-plugin/w3-total-cache": "^2.9",
+    "wp-plugin/wordfence": "^8.2",
+    "wp-plugin/wordpress-seo": "^27.6",
     "wp-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
