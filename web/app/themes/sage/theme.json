@@ -9,7 +9,15 @@
     "background": {
       "backgroundImage": true
     },
+    "border": {
+      "color": false,
+      "radius": false,
+      "style": false,
+      "width": false
+    },
     "color": {
+      "background": true,
+      "button": true,
       "custom": false,
       "customDuotone": false,
       "customGradient": false,
@@ -34,7 +42,8 @@
     },
     "typography": {
       "defaultFontSizes": false,
-      "customFontSize": false
+      "customFontSize": false,
+      "fluid": true
     }
   }
 }
