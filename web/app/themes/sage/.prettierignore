@@ -1,0 +1,11 @@
+# PHP est géré par Pint (composer lint), pas par Prettier
+*.php
+!*.blade.php
+
+# Build et dépendances
+public/build
+node_modules
+vendor
+
+# Traductions
+resources/lang
