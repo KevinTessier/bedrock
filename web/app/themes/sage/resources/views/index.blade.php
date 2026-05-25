@@ -20,5 +20,9 @@
     </div>
   @endif
 
-  {!! get_the_posts_navigation() !!}
+  @if ($pagination)
+    <nav class="pagination py-4" aria-label="{{ __('Pagination', 'sage') }}">
+      {!! $pagination !!}
+    </nav>
+  @endif
 @endsection
