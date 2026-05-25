@@ -22,6 +22,7 @@
 
     <main id="main" class="container mx-auto px-4 py-8" tabindex=-1>
       @yield('content')
+      @yield('related')
     </main>
 
     @include('sections.footer')

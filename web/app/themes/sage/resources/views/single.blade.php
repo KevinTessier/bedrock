@@ -7,3 +7,9 @@
   @endwhile
 @endsection
 
+@section('related')  
+  @if (!empty($related))
+    @includeFirst(['partials.related-single-' . get_post_type(), 'partials.related-single'])
+  @endif
+@endsection
+
