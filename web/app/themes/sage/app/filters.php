@@ -301,6 +301,11 @@ add_filter('block_categories_all', function ($categories) {
             'title' => __('Custom Blocks', 'sage'),
             'icon' => 'star-filled',
         ],
+        [
+            'slug' => 'sage',
+            'title' => __('Sage', 'sage'),
+            'icon' => 'format-quote',
+        ],
     ], $categories);
 });
 
@@ -311,7 +316,7 @@ add_filter('block_categories_all', function ($categories) {
  * @return array
  */
 add_filter('allowed_block_types_all', function () {
-    return [
+    $core = [
         'core/paragraph',
         'core/heading',
         'core/list',
@@ -327,6 +332,20 @@ add_filter('allowed_block_types_all', function () {
         'core/media-text',
         'core/quote',
     ];
+
+    // Autorise tous les blocs custom du thème, lus depuis resources/blocks/*/block.json
+    // (robuste : indépendant du préfixe de namespace choisi).
+    $custom = [];
+
+    foreach (glob(get_theme_file_path('resources/blocks/*/block.json')) as $file) {
+        $meta = json_decode(file_get_contents($file), true);
+
+        if (! empty($meta['name'])) {
+            $custom[] = $meta['name'];
+        }
+    }
+
+    return array_merge($core, $custom);
 });
 
 

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sage/citation",
+  "version": "1.0.0",
+  "title": "Citation",
+  "category": "sage",
+  "icon": "format-quote",
+  "description": "Citation centrée avec attribution (prénom + nom). Fond de couleur optionnel.",
+  "keywords": ["citation", "quote", "témoignage"],
+  "textdomain": "sage",
+  "attributes": {
+    "quote": {
+      "type": "string",
+      "default": ""
+    },
+    "firstName": {
+      "type": "string",
+      "default": ""
+    },
+    "lastName": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": ["wide"],
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "text": true,
+      "link": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "quote": "Les faits, sans tri ni biais.",
+      "firstName": "Jean",
+      "lastName": "Sauvignon"
+    }
+  },
+  "render": "file:./render.php"
+}

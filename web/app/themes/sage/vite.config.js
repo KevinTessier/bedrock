@@ -40,6 +40,16 @@ export default defineConfig({
       '@styles': '/resources/css',
       '@fonts': '/resources/fonts',
       '@images': '/resources/images',
+      '@blocks': '/resources/blocks',
     },
+  },
+  // Transforme le JSX des blocs Gutenberg via @wordpress/element.
+  // `jsx: 'transform'` force le runtime CLASSIQUE (sinon Vite 8/rolldown part
+  // en runtime automatique et cherche react/jsx-runtime).
+  // Chaque bloc importe lui-même createElement / Fragment.
+  esbuild: {
+    jsx: 'transform',
+    jsxFactory: 'createElement',
+    jsxFragment: 'Fragment',
   },
 });

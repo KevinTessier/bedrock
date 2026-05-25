@@ -30,7 +30,9 @@
 .wp-block-gallery,
 .wp-block-embed,
 .wp-block-spacer,
-.wp-block-html {
+.wp-block-html,
+[class*=" sage-"]
+ {
   background: rgba(222 225 219 / 50%);
   padding: 1.25rem;
   margin: 1rem 0;
