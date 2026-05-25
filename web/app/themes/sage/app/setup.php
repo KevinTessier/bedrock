@@ -85,6 +85,7 @@ add_action('after_setup_theme', function () {
      */
     register_nav_menus([
         'primary_navigation' => __('Primary Navigation', 'sage'),
+        'footer_navigation' => __('Footer Navigation', 'sage'),
     ]);
 
     /**
@@ -107,6 +108,13 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
      */
     add_theme_support('post-thumbnails');
+    /**
+     * Custom image sizes optimized for the theme.
+     * - card-thumbnail: article grid (3/4 aspect, 4 columns = ~320px)
+     * - featured-image: featured article (50vw = ~640px)
+     */
+    add_image_size('card-thumbnail', 400, 533, true);
+    add_image_size('featured-image', 800, 0, false);
 
     /**
      * Enable responsive embed support.
@@ -136,6 +144,13 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#customize-selective-refresh-widgets
      */
     add_theme_support('customize-selective-refresh-widgets');
+
+    /**
+     * Enable editor styles and restrict Gutenberg customization.
+     */
+    add_theme_support('editor-styles');
+    add_theme_support('disable-custom-colors');
+    add_theme_support('disable-custom-font-sizes');
 }, 20);
 
 /**
@@ -161,3 +176,85 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+/**
+ * ==========================================================================
+ * Eco-design: Image optimizations (RGESN)
+ * ==========================================================================
+ */
+
+/**
+ * Remove WordPress SVG duotone filters (reduces DOM size).
+ */
+remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+
+/**
+ * Dequeue core-block-supports in footer.
+ */
+add_action('wp_footer', function () {
+    wp_dequeue_style('core-block-supports');
+}, 5);
+
+/**
+ * Remove unused image sizes to save disk space.
+ * Keeps only: thumbnail, medium, medium_large, large + custom sizes.
+ */
+add_filter('intermediate_image_sizes_advanced', function ($sizes) {
+    $kept_sizes = ['thumbnail', 'medium', 'medium_large', 'large', 'card-thumbnail', 'featured-image'];
+
+    foreach ($sizes as $size => $value) {
+        if (! in_array($size, $kept_sizes)) {
+            unset($sizes[$size]);
+        }
+    }
+
+    return $sizes;
+});
+
+
+/**
+ * ==========================================================================
+ * Eco-design: Script optimizations (RGESN)
+ * ==========================================================================
+ */
+
+/**
+ * Add defer to scripts for better loading performance.
+ * Excludes jQuery which may be needed synchronously.
+ */
+add_filter('script_loader_tag', function ($tag, $handle, $src) {
+    $exclude = ['jquery', 'jquery-core', 'jquery-migrate'];
+
+    if (in_array($handle, $exclude)) {
+        return $tag;
+    }
+
+    if (! is_admin()) {
+        $tag = str_replace(' src', ' defer src', $tag);
+    }
+
+    return $tag;
+}, 10, 3);
+
+/**
+ * Remove X-Pingback header.
+ */
+add_filter('wp_headers', function ($headers) {
+    unset($headers['X-Pingback']);
+    return $headers;
+});
+
+
+/**
+ * Limit post revisions to save database space.
+ */
+if (! defined('WP_POST_REVISIONS')) {
+    define('WP_POST_REVISIONS', 3);
+}
+
+/**
+ * Set autosave interval to 5 minutes (instead of 60 seconds).
+ */
+if (! defined('AUTOSAVE_INTERVAL')) {
+    define('AUTOSAVE_INTERVAL', 300);
+}
