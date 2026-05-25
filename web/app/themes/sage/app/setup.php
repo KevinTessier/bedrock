@@ -117,6 +117,18 @@ add_action('after_setup_theme', function () {
     add_image_size('featured-image', 800, 0, false);
 
     /**
+     * Enable custom logo support (Appearance > Customize > Site Identity).
+     *
+     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#custom-logo
+     */
+    add_theme_support('custom-logo', [
+        'height' => 60,
+        'width' => 200,
+        'flex-height' => true,
+        'flex-width' => true,
+    ]);
+
+    /**
      * Enable responsive embed support.
      *
      * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#responsive-embedded-content

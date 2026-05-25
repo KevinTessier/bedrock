@@ -341,6 +341,19 @@ if (defined('CDN_URL') && CDN_URL) {
 }
 
 /**
+ * [RGAA 1.1 / 6.1] Guarantee an alternative text on the custom logo.
+ * The logo image is the only content of the home link: without an alt,
+ * the link is announced without a label by screen readers.
+ */
+add_filter('get_custom_logo_image_attributes', function ($attr) {
+    if (empty($attr['alt'])) {
+        $attr['alt'] = get_bloginfo('name', 'display');
+    }
+
+    return $attr;
+});
+
+/**
  * [RGAA 5.3] Add scope="col" to <th> elements in content.
  */
 add_filter('the_content', function ($content) {

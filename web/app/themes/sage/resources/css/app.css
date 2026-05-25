@@ -6,3 +6,188 @@
 @theme static {
     --color-beige: oklch(95% 0.02 100);
 }
+
+@layer components {
+    /* Icône du burger : on affiche l'état correspondant à aria-expanded */
+    .nav-toggle__icon-close {
+        display: none;
+    }
+
+    .nav-toggle[aria-expanded='true'] .nav-toggle__icon-open {
+        display: none;
+    }
+
+    .nav-toggle[aria-expanded='true'] .nav-toggle__icon-close {
+        display: block;
+    }
+
+    /* Liste du menu */
+    .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 1.5rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .nav a {
+        display: block;
+        padding: 0.5rem 0;
+        color: var(--color-gray-900);
+        text-decoration: none;
+    }
+
+    .nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* [RGAA 10.7] Prise de focus visible sur les liens du menu */
+    .nav a:focus-visible {
+        outline: 2px solid var(--color-gray-900);
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
+
+    /* Page courante (aria-current="page" ajouté par WordPress) */
+    .nav a[aria-current='page'] {
+        font-weight: 700;
+    }
+
+    /* === Sous-menus (multi-niveaux) ===
+       Pattern Disclosure : lien parent + bouton séparé. Le bouton est injecté
+       en JS ; sans JS, le repli :hover / :focus-within prend le relais. */
+    .sub-menu {
+        display: none;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* Ligne "lien parent + bouton" ; le sous-menu passe en dessous */
+    .menu-item-has-children {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .menu-item-has-children > a {
+        flex: 1 1 auto;
+    }
+
+    .menu-item-has-children > .sub-menu {
+        flex-basis: 100%;
+    }
+
+    /* Bouton d'ouverture d'un sous-menu (injecté en JS) */
+    .submenu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        /* [WCAG 2.5.8] cible d'au moins 24x24px ; portée à 44px sur mobile */
+        min-width: 24px;
+        min-height: 24px;
+        padding: 0.25rem;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .submenu-toggle:focus-visible {
+        outline: 2px solid var(--color-gray-900);
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
+
+    .submenu-toggle__icon {
+        transition: transform 0.15s ease;
+    }
+
+    .submenu-toggle[aria-expanded='true'] .submenu-toggle__icon {
+        transform: rotate(180deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .submenu-toggle__icon {
+            transition: none;
+        }
+    }
+
+    /* Sans JS : sous-menu révélé au survol souris / focus clavier */
+    .nav-primary:not(.is-enhanced) .menu-item-has-children:hover > .sub-menu,
+    .nav-primary:not(.is-enhanced) .menu-item-has-children:focus-within > .sub-menu {
+        display: block;
+    }
+
+    /* Avec JS : piloté par le bouton (aria-expanded => .is-open) */
+    .nav-primary.is-enhanced .menu-item-has-children.is-open > .sub-menu {
+        display: block;
+    }
+
+    /* Mobile : le menu devient un panneau déroulant, masqué par défaut */
+    @media (width < 64rem) {
+        .nav-primary {
+            position: absolute;
+            inset-inline: 0;
+            top: 100%;
+            display: none;
+            padding: 0.5rem 1rem 1rem;
+            background: #fff;
+            border-bottom: 1px solid rgb(0 0 0 / 0.1);
+            box-shadow: 0 8px 24px rgb(0 0 0 / 0.06);
+            /* [RGAA 10.11] Panneau scrollable si le zoom texte tronque le contenu */
+            max-height: calc(100dvh - 100%);
+            overflow-y: auto;
+        }
+
+        .nav-primary.is-open {
+            display: block;
+        }
+
+        .nav {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .nav a {
+            padding: 0.75rem 0;
+        }
+
+        /* Sous-menus empilés et indentés sous le parent */
+        .menu-item-has-children > .sub-menu {
+            padding-left: 1rem;
+        }
+
+        /* Cible tactile suffisante pour le bouton (WCAG 2.5.5) */
+        .submenu-toggle {
+            min-width: 44px;
+            min-height: 44px;
+        }
+    }
+
+    /* Desktop : sous-menus de 1er niveau en dropdown positionné */
+    @media (width >= 64rem) {
+        .nav > .menu-item-has-children {
+            position: relative;
+        }
+
+        .nav > .menu-item-has-children > .sub-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 10;
+            min-width: 12rem;
+            padding: 0.5rem;
+            background: #fff;
+            border: 1px solid rgb(0 0 0 / 0.1);
+            border-radius: 0.375rem;
+            box-shadow: 0 8px 24px rgb(0 0 0 / 0.08);
+        }
+
+        /* Niveaux plus profonds : empilés/indentés dans le panneau ouvert */
+        .nav .sub-menu .sub-menu {
+            padding-left: 0.75rem;
+        }
+    }
+}
