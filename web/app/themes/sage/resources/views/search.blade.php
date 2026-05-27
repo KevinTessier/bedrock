@@ -2,6 +2,8 @@
 
 @section('content')
   <div class="content-grid">
+    @include('partials.breadcrumbs')
+
     @include('partials.page-header')
 
     @if (!have_posts())

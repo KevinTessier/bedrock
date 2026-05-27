@@ -423,4 +423,31 @@
     outline-offset: 2px;
     background: #111827;
   }
+
+  /* Fil d'Ariane (Yoast). Liens discrets, élément courant en encre. */
+  .breadcrumb {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .breadcrumb a {
+    color: #6b7280;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: #1f2937;
+    text-decoration: underline;
+  }
+
+  .breadcrumb a:focus-visible {
+    outline: 2px solid #1f2937;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .breadcrumb .breadcrumb_last {
+    color: #1f2937;
+    font-weight: 600;
+  }
 }

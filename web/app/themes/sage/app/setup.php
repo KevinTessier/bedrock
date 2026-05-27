@@ -274,19 +274,20 @@ if (! defined('AUTOSAVE_INTERVAL')) {
 }
 
 /**
- * Default the permalink structure to /articles/%postname%/.
+ * Default the permalink structure to /actualites/%postname%/.
  *
- * Runs once on theme activation: posts resolve to /articles/{slug}/ while
- * pages keep their clean /{slug}/ URLs. Admins can still change it later
- * via Settings > Permalinks.
+ * Runs once on theme activation: posts resolve to /actualites/{slug}/ while
+ * pages keep their clean /{slug}/ URLs. The "Actualités" page (slug
+ * `actualites`) is wired as the Posts page in Settings > Reading, so it lists
+ * the posts at /actualites/ and Yoast adds it to the breadcrumb trail.
  *
  * @link https://developer.wordpress.org/reference/functions/flush_rewrite_rules/
  *
  * @return void
  */
 add_action('after_switch_theme', function () {
-    if (get_option('permalink_structure') !== '/articles/%postname%/') {
-        update_option('permalink_structure', '/articles/%postname%/');
+    if (get_option('permalink_structure') !== '/actualites/%postname%/') {
+        update_option('permalink_structure', '/actualites/%postname%/');
     }
 
     // Always flush so newly registered rewrite rules (e.g. the Book CPT) apply.
