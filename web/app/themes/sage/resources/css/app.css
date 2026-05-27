@@ -228,10 +228,6 @@
 }
 
 /* === Façade YouTube (clic-pour-charger) === */
-.wp-block-embed__wrapper:has(> .yt-facade):before{
-  display: none!important;
-}
-
 .yt-facade {
   position: relative;
   display: block;

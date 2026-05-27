@@ -140,13 +140,6 @@ add_action('after_setup_theme', function () {
     ]);
 
     /**
-     * Enable responsive embed support.
-     *
-     * @link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/#responsive-embedded-content
-     */
-    add_theme_support('responsive-embeds');
-
-    /**
      * Enable HTML5 markup support.
      *
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
