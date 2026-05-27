@@ -287,6 +287,8 @@ if (! defined('AUTOSAVE_INTERVAL')) {
 add_action('after_switch_theme', function () {
     if (get_option('permalink_structure') !== '/articles/%postname%/') {
         update_option('permalink_structure', '/articles/%postname%/');
-        flush_rewrite_rules();
     }
+
+    // Always flush so newly registered rewrite rules (e.g. the Book CPT) apply.
+    flush_rewrite_rules();
 });

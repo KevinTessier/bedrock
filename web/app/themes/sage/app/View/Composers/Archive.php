@@ -14,6 +14,7 @@ class Archive extends Composer
     protected static $views = [
         'index',
         'search',
+        'archive-book',
     ];
 
     /**

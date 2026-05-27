@@ -13,6 +13,7 @@ class Card extends Composer
      */
     protected static $views = [
         'partials.card-post',
+        'partials.card-book',
     ];
 
     /**

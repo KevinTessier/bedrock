@@ -15,6 +15,7 @@ class Post extends Composer
         'partials.page-header',
         'partials.content',
         'partials.content-single',
+        'partials.content-single-book',
         'partials.content-search',
         'partials.content-page',
         // 'partials.content-post' est servi par le composer Card (data explicite).
