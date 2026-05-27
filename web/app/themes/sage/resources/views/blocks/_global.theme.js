@@ -63,7 +63,7 @@ export default {
   // ---- styles.blocks -------------------------------------------------------
   blocks: {
     'core/paragraph': {
-      spacing: { margin: { bottom: '1rem' } },
+      spacing: { margin: { bottom: '0.5rem', top: '0.5rem' } },
       typography: { lineHeight: '1.7' },
     },
 
