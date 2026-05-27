@@ -146,8 +146,6 @@ add_action('after_setup_theme', function () {
      */
     add_theme_support('html5', [
         'caption',
-        'comment-form',
-        'comment-list',
         'gallery',
         'search-form',
         'script',
@@ -274,3 +272,21 @@ if (! defined('WP_POST_REVISIONS')) {
 if (! defined('AUTOSAVE_INTERVAL')) {
     define('AUTOSAVE_INTERVAL', 300);
 }
+
+/**
+ * Default the permalink structure to /articles/%postname%/.
+ *
+ * Runs once on theme activation: posts resolve to /articles/{slug}/ while
+ * pages keep their clean /{slug}/ URLs. Admins can still change it later
+ * via Settings > Permalinks.
+ *
+ * @link https://developer.wordpress.org/reference/functions/flush_rewrite_rules/
+ *
+ * @return void
+ */
+add_action('after_switch_theme', function () {
+    if (get_option('permalink_structure') !== '/articles/%postname%/') {
+        update_option('permalink_structure', '/articles/%postname%/');
+        flush_rewrite_rules();
+    }
+});

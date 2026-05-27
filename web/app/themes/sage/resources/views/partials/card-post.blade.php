@@ -1,6 +1,6 @@
 <article class="card group relative flex flex-col overflow-hidden rounded-lg border border-black/10 bg-white transition-shadow hover:shadow-lg">
   @if ($thumbnail)
-    <div class="aspect-[16/9] overflow-hidden bg-beige">
+    <div class="aspect-video overflow-hidden bg-beige">
       {!! $thumbnail !!}
     </div>
   @endif
