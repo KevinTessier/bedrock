@@ -162,8 +162,16 @@ add_filter('wp_resource_hints', function ($urls, $relation_type) {
  * [RGESN 6.7 / FCP] Preload main CSS + fonts
  * CSS is injected by @vite after wp_head(), so discovered late.
  * Preload allows the browser to download it in parallel from the start of head.
+ *
+ * Skipped when the Vite dev server is running: the preload is useless there,
+ * and the Vite HMR client swaps the first <link> matching the CSS path, which
+ * would be this preload instead of the real stylesheet (CSS updates never show).
  */
 add_action('wp_head', function () {
+    if (\Illuminate\Support\Facades\Vite::isRunningHot()) {
+        return;
+    }
+
     $css = \Illuminate\Support\Facades\Vite::asset('resources/css/app.css');
     echo '<link rel="preload" href="' . esc_url($css) . '" as="style">' . "\n";
 

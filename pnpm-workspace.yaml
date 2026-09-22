@@ -1,0 +1,8 @@
+# Explicit path rather than "web/app/themes/*": default WP themes installed by
+# Composer (twentytwentyfive, ...) ship a package.json and would be picked up.
+packages:
+  - "web/app/themes/sage"
+
+# core-js-pure's postinstall only prints a funding notice; no build needed.
+allowBuilds:
+  core-js-pure: false

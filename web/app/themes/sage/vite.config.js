@@ -1,14 +1,13 @@
+import path from 'node:path';
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin';
 import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
 
-// Set APP_URL if it doesn't exist for Laravel Vite plugin
-if (!process.env.APP_URL) {
-  process.env.APP_URL = 'http://example.test';
-}
-
 export default defineConfig({
+  // .env / .env.local / .env.[mode] lus depuis la racine Bedrock (pas le thème).
+  // Seules les variables VITE_* sont exposées au client (import.meta.env).
+  envDir: path.resolve(import.meta.dirname, '../../../..'),
   base: '/app/themes/sage/public/build/',
   plugins: [
     tailwindcss(),

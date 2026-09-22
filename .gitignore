@@ -25,6 +25,9 @@ web/.htaccess
 /vendor
 auth.json
 
+# Node / pnpm
+/node_modules
+
 # PHPUnit/Pest
 phpunit.xml
 .phpunit.result.cache
