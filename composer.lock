@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00496cfc6278cc8363d758534bfd2a18",
+    "content-hash": "047bdb9dcab2805f9f583f5b0e85d5af",
     "packages": [
         {
             "name": "composer/installers",
@@ -1071,6 +1071,99 @@
                 "source": "https://plugins.svn.wordpress.org/broken-link-checker"
             },
             "time": "2026-08-31T08:46:08+00:00"
+        },
+        {
+            "name": "wp-plugin/complianz-gdpr",
+            "version": "7.5.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/complianz-gdpr/",
+                "reference": "tags/7.5.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/complianz-gdpr.7.5.5.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Complianz"
+                }
+            ],
+            "description": "Publish your cookie banner or notice in minutes. Automatically scan cookies, and create policies to align with GDPR, CCPA, and Google Consent Mode.",
+            "homepage": "https://www.wordpress.org/plugins/complianz-gdpr",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/complianz-gdpr/#developers",
+                "issues": "https://wordpress.org/support/plugin/complianz-gdpr",
+                "source": "https://plugins.svn.wordpress.org/complianz-gdpr"
+            },
+            "time": "2026-09-08T13:06:54+00:00"
+        },
+        {
+            "name": "wp-plugin/complianz-terms-conditions",
+            "version": "1.4.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/complianz-terms-conditions/",
+                "reference": "tags/1.4.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/complianz-terms-conditions.1.4.1.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Complianz"
+                }
+            ],
+            "description": "Configure your own Terms and Conditions specific to your service or webshop.",
+            "homepage": "https://wordpress.org/plugins/complianz-terms-conditions",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/complianz-terms-conditions/#developers",
+                "issues": "https://wordpress.org/support/plugin/complianz-terms-conditions",
+                "source": "https://plugins.svn.wordpress.org/complianz-terms-conditions"
+            },
+            "time": "2026-09-17T15:41:23+00:00"
+        },
+        {
+            "name": "wp-plugin/contact-form-7",
+            "version": "6.1.7",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/contact-form-7/",
+                "reference": "tags/6.1.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/contact-form-7.6.1.7.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0|~2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://wp-packages.org/downloads",
+            "authors": [
+                {
+                    "name": "Rock Lobster Inc."
+                }
+            ],
+            "description": "Just another contact form plugin. Simple but flexible.",
+            "homepage": "https://contactform7.com/",
+            "support": {
+                "changelog": "https://wordpress.org/plugins/contact-form-7/#developers",
+                "issues": "https://wordpress.org/support/plugin/contact-form-7",
+                "source": "https://plugins.svn.wordpress.org/contact-form-7"
+            },
+            "time": "2026-08-17T04:15:58+00:00"
         },
         {
             "name": "wp-plugin/hcaptcha-for-forms-and-more",
