@@ -96,6 +96,15 @@ Config::define('WP_HOME', env('WP_HOME'));
 Config::define('WP_SITEURL', env('WP_SITEURL'));
 
 /**
+ * Matomo (consentement géré par tarteaucitron, cf. thème app/cookie-consent.php).
+ * Renseigner dans .env pour activer le suivi + la bannière de consentement :
+ *   MATOMO_URL='https://stats.exemple.com/'   # instance Matomo (slash final)
+ *   MATOMO_SITE_ID=1                          # idSite dans Matomo
+ * Laissés vides => Matomo et la bannière restent désactivés.
+ */
+Config::define('MATOMO_URL', env('MATOMO_URL') ?: '');
+Config::define('MATOMO_SITE_ID', env('MATOMO_SITE_ID') ?: '');
+/**
  * Custom Content Directory
  */
 Config::define('CONTENT_DIR', '/app');
