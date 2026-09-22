@@ -1,0 +1,453 @@
+/* Ordre des cascade layers : les styles WordPress (theme.json) sont injectés
+   dans le layer `wordpress` (cf. app/filters.php), entre `base` et `components`,
+   pour que les utilities Tailwind les surchargent sans !important. */
+@layer theme, base, wordpress, components, utilities;
+
+@import 'tailwindcss';
+@source '../../app/**/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme static {
+  --color-beige: oklch(95% 0.02 100);
+}
+
+@layer components {
+  /* Icône du burger : on affiche l'état correspondant à aria-expanded */
+  .nav-toggle__icon-close {
+    display: none;
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle__icon-open {
+    display: none;
+  }
+
+  .nav-toggle[aria-expanded='true'] .nav-toggle__icon-close {
+    display: block;
+  }
+
+  /* Liste du menu */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.5rem 0;
+    color: var(--color-gray-900);
+    text-decoration: none;
+  }
+
+  .nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* [RGAA 10.7] Prise de focus visible sur les liens du menu */
+  .nav a:focus-visible {
+    outline: 2px solid var(--color-gray-900);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Page courante (aria-current="page" ajouté par WordPress) */
+  .nav a[aria-current='page'] {
+    font-weight: 700;
+  }
+
+  /* === Sous-menus (multi-niveaux) ===
+       Pattern Disclosure : lien parent + bouton séparé. Le bouton est injecté
+       en JS ; sans JS, le repli :hover / :focus-within prend le relais. */
+  .sub-menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Ligne "lien parent + bouton" ; le sous-menu passe en dessous */
+  .menu-item-has-children {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .menu-item-has-children > a {
+    flex: 1 1 auto;
+  }
+
+  .menu-item-has-children > .sub-menu {
+    flex-basis: 100%;
+  }
+
+  /* Bouton d'ouverture d'un sous-menu (injecté en JS) */
+  .submenu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* [WCAG 2.5.8] cible d'au moins 24x24px ; portée à 44px sur mobile */
+    min-width: 24px;
+    min-height: 24px;
+    padding: 0.25rem;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .submenu-toggle:focus-visible {
+    outline: 2px solid var(--color-gray-900);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .submenu-toggle__icon {
+    transition: transform 0.15s ease;
+  }
+
+  .submenu-toggle[aria-expanded='true'] .submenu-toggle__icon {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .submenu-toggle__icon {
+      transition: none;
+    }
+  }
+
+  /* Sans JS : sous-menu révélé au survol souris / focus clavier */
+  .nav-primary:not(.is-enhanced) .menu-item-has-children:hover > .sub-menu,
+  .nav-primary:not(.is-enhanced)
+    .menu-item-has-children:focus-within
+    > .sub-menu {
+    display: block;
+  }
+
+  /* Avec JS : piloté par le bouton (aria-expanded => .is-open) */
+  .nav-primary.is-enhanced .menu-item-has-children.is-open > .sub-menu {
+    display: block;
+  }
+
+  /* Mobile : le menu devient un panneau déroulant, masqué par défaut */
+  @media (width < 64rem) {
+    .nav-primary {
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      display: none;
+      padding: 0.5rem 1rem 1rem;
+      background: #fff;
+      border-bottom: 1px solid rgb(0 0 0 / 0.1);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.06);
+      /* [RGAA 10.11] Panneau scrollable si le zoom texte tronque le contenu */
+      max-height: calc(100dvh - 100%);
+      overflow-y: auto;
+    }
+
+    .nav-primary.is-open {
+      display: block;
+    }
+
+    .nav {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav a {
+      padding: 0.75rem 0;
+    }
+
+    /* Sous-menus empilés et indentés sous le parent */
+    .menu-item-has-children > .sub-menu {
+      padding-left: 1rem;
+    }
+
+    /* Cible tactile suffisante pour le bouton (WCAG 2.5.5) */
+    .submenu-toggle {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+
+  /* Desktop : sous-menus de 1er niveau en dropdown positionné */
+  @media (width >= 64rem) {
+    .nav > .menu-item-has-children {
+      position: relative;
+    }
+
+    .nav > .menu-item-has-children > .sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      min-width: 12rem;
+      padding: 0.5rem;
+      background: #fff;
+      border: 1px solid rgb(0 0 0 / 0.1);
+      border-radius: 0.375rem;
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.08);
+    }
+
+    /* Niveaux plus profonds : empilés/indentés dans le panneau ouvert */
+    .nav .sub-menu .sub-menu {
+      padding-left: 0.75rem;
+    }
+  }
+}
+
+/* === Blocs de contenu : correctifs layout responsive ===
+   Hors @layer pour primer sur les styles core. Compense le CSS des blocs
+   core déqueué (filters.php) : theme.json gère le décoratif, mais pas les
+   @media (cf. _global.theme.js). */
+
+/* Média & texte : grille côte à côte */
+.wp-block-media-text {
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 781px) {
+  /* Colonnes : empilement sur mobile (sauf opt-out is-not-stacked-on-mobile) */
+  .wp-block-columns:not(.is-not-stacked-on-mobile) {
+    flex-wrap: wrap;
+  }
+  .wp-block-columns:not(.is-not-stacked-on-mobile) > .wp-block-column {
+    flex-basis: 100% !important;
+  }
+
+  /* Média & texte : empilement sur mobile */
+  .wp-block-media-text.is-stacked-on-mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Façade YouTube (clic-pour-charger) === */
+.yt-facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: var(--wp--preset--color--beige);
+  overflow: hidden;
+}
+
+.yt-facade__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Pastille « lecture » centrée */
+.yt-facade__play {
+  position: absolute;
+  inset: 0;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 0.7);
+  border-radius: 9999px;
+  transition: background 0.15s ease;
+}
+
+.yt-facade__play::before {
+  content: '';
+  width: 0;
+  height: 0;
+  margin-left: 0.35rem;
+  border-style: solid;
+  border-width: 0.9rem 0 0.9rem 1.4rem;
+  border-color: transparent transparent transparent #fff;
+}
+
+.yt-facade:hover .yt-facade__play {
+  background: #000;
+}
+
+.yt-facade:focus-visible {
+  outline: 3px solid var(--color-gray-900, #1f2937);
+  outline-offset: 2px;
+}
+
+.yt-facade__iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yt-facade__play {
+    transition: none;
+  }
+}
+
+/* === Layout de contenu : alignfull / alignwide (sans vw, scrollbar-safe) ===
+   Le contenu normal est centré à contentSize ; .alignwide -> wideSize ;
+   .alignfull -> bord à bord (fond de couleur pleine largeur).
+   Mappe directement les classes d'alignement de Gutenberg. */
+.content-grid {
+  --cg-pad: 1rem;
+  /* La colonne "content" suit les paliers du `.container` Tailwind (cf. @media plus bas).
+     En dessous de 40rem, le min() la rend fluide (= container à 100%). */
+  --cg-content: 40rem;
+  --cg-wide: var(--wp--style--global--wide-size, 96rem);
+
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--cg-pad), 1fr)
+    [wide-start] minmax(0, calc((var(--cg-wide) - var(--cg-content)) / 2))
+    [content-start] min(100% - var(--cg-pad) * 2, var(--cg-content)) [content-end]
+    minmax(0, calc((var(--cg-wide) - var(--cg-content)) / 2)) [wide-end]
+    minmax(var(--cg-pad), 1fr) [full-end];
+}
+
+.content-grid > * {
+  grid-column: content;
+}
+
+.content-grid > .alignwide {
+  grid-column: wide;
+}
+
+.content-grid > .alignfull {
+  grid-column: full;
+}
+
+/* Paliers identiques au `.container` de Tailwind (sm/md/lg/xl/2xl) */
+@media (width >= 48rem) { .content-grid { --cg-content: 48rem; } }
+@media (width >= 64rem) { .content-grid { --cg-content: 64rem; } }
+@media (width >= 80rem) { .content-grid { --cg-content: 80rem; } }
+@media (width >= 96rem) { .content-grid { --cg-content: 96rem; } }
+
+/* === Pagination (archives) === */
+.pagination ul.page-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination li .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem; /* cible tactile (WCAG 2.5.8) */
+  padding: 0 0.5rem;
+  border: 1px solid rgb(0 0 0 / 0.1);
+  border-radius: 0.375rem;
+  color: var(--color-gray-900, #1f2937);
+  line-height: 1;
+  text-decoration: none;
+}
+
+.pagination li a.page-numbers:hover {
+  background: var(--wp--preset--color--beige);
+}
+
+.pagination li a.page-numbers:focus-visible {
+  outline: 2px solid var(--color-gray-900, #1f2937);
+  outline-offset: 2px;
+}
+
+/* Page courante (aria-current="page") */
+.pagination li .page-numbers.current {
+  background: #1f2937;
+  border-color: #1f2937;
+  color: #fff;
+  font-weight: 600;
+}
+
+@layer components {
+  /* Formulaire de recherche (page de recherche, 404). Aligné sur le style
+     des boutons du thème (encre #1f2937, survol #111827). */
+  .search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .search-form label {
+    flex: 1 1 12rem;
+    min-width: 0;
+  }
+
+  .search-form input[type='search'] {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    background: #fff;
+    border: 1px solid rgb(0 0 0 / 0.15);
+    border-radius: 0.375rem;
+    line-height: 1.2;
+  }
+
+  .search-form input[type='search']:focus-visible {
+    outline: 2px solid #1f2937;
+    outline-offset: 2px;
+    border-color: #1f2937;
+  }
+
+  .search-form button {
+    padding: 0.625rem 1.25rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background: #1f2937;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 150ms;
+  }
+
+  .search-form button:hover {
+    background: #111827;
+  }
+
+  .search-form button:focus-visible {
+    outline: 2px solid #1f2937;
+    outline-offset: 2px;
+    background: #111827;
+  }
+
+  /* Fil d'Ariane (Yoast). Liens discrets, élément courant en encre. */
+  .breadcrumb {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .breadcrumb a {
+    color: #6b7280;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: #1f2937;
+    text-decoration: underline;
+  }
+
+  .breadcrumb a:focus-visible {
+    outline: 2px solid #1f2937;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .breadcrumb .breadcrumb_last {
+    color: #1f2937;
+    font-weight: 600;
+  }
+}

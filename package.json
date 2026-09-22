@@ -1,0 +1,14 @@
+{
+  "name": "bedrock",
+  "private": true,
+  "packageManager": "pnpm@12.5.1",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter sage dev",
+    "build": "pnpm --filter sage build",
+    "translate": "pnpm --filter sage translate",
+    "p:write": "pnpm --filter sage p:write"
+  }
+}

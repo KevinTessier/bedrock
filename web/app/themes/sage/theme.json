@@ -1,0 +1,48 @@
+{
+  "__preprocessed__": "This file is used to build the theme.json file in the `public/build/assets` directory. The built artifact includes Tailwind's colors, fonts, and font sizes.",
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "layout": {
+      "contentSize": "96rem",
+      "wideSize": "96rem"
+    },
+    "background": {
+      "backgroundImage": true
+    },
+    "border": {
+      "color": false,
+      "radius": false,
+      "style": false,
+      "width": false
+    },
+    "color": {
+      "background": true,
+      "button": true,
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "defaultDuotone": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "duotone": [],
+      "palette": [{ "name": "Beige", "slug": "beige", "color": "#F2F1E3" }]
+    },
+    "custom": {
+      "spacing": {},
+      "typography": {
+        "font-size": {},
+        "line-height": {}
+      }
+    },
+    "spacing": {
+      "padding": true,
+      "units": ["px", "%", "em", "rem", "vw", "vh"]
+    },
+    "typography": {
+      "defaultFontSizes": false,
+      "customFontSize": false,
+      "fluid": true
+    }
+  }
+}

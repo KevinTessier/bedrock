@@ -1,0 +1,16 @@
+{
+  "plugins": ["@shufo/prettier-plugin-blade", "prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./resources/css/app.css",
+  "tailwindFunctions": ["clsx", "classnames"],
+  "tailwindAttributes": ["class"],
+  "overrides": [
+    {
+      "files": "*.blade.php",
+      "options": {
+        "parser": "blade",
+        "sortTailwindcssClasses": true,
+        "sortHtmlAttributes": "none"
+      }
+    }
+  ]
+}

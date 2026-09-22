@@ -28,22 +28,46 @@
       "name": "wp-packages",
       "type": "composer",
       "url": "https://repo.wp-packages.org"
+    },
+    {
+      "name": "kevintessier-wpml",
+      "type": "vcs",
+      "url": "git@github.com:KevinTessier/wpml.git"
+    },
+    {
+      "name": "kevintessier-wpml-string-translation",
+      "type": "vcs",
+      "url": "git@github.com:KevinTessier/wpml-string-translation.git"
     }
+
   ],
   "require": {
     "php": ">=8.3",
     "composer/installers": "^2.0",
+    "kevintessier/sitepress-multilingual-cms": "^4.9",
+    "kevintessier/wpml-string-translation": "dev-main",
     "oscarotero/env": "^2.0",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "7.0",
+    "roots/wordpress": "^7.0.0",
     "roots/wp-config": "^1.0",
     "vlucas/phpdotenv": "^5.0",
+    "wp-plugin/broken-link-checker": "^2.4",
+    "wp-plugin/complianz-gdpr": "^7.5",
+    "wp-plugin/complianz-terms-conditions": "^1.4",
+    "wp-plugin/contact-form-7": "^6.1",
+    "wp-plugin/hcaptcha-for-forms-and-more": "^5.0.0",
+    "wp-plugin/imagify": "^2.2",
+    "wp-plugin/query-monitor": "^4.0",
+    "wp-plugin/safe-svg": "^2.4",
+    "wp-plugin/w3-total-cache": "^2.9",
+    "wp-plugin/wordfence": "^9.0.0",
+    "wp-plugin/wordpress-seo": "^28.0.0",
     "wp-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
     "laravel/pint": "^1.0",
-    "pestphp/pest": "^4.0"
+    "pestphp/pest": "^5.0.0"
   },
   "config": {
     "optimize-autoloader": true,

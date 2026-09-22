@@ -96,6 +96,15 @@ Config::define('WP_HOME', env('WP_HOME'));
 Config::define('WP_SITEURL', env('WP_SITEURL'));
 
 /**
+ * Matomo (consentement géré par tarteaucitron, cf. thème app/cookie-consent.php).
+ * Renseigner dans .env pour activer le suivi + la bannière de consentement :
+ *   MATOMO_URL='https://stats.exemple.com/'   # instance Matomo (slash final)
+ *   MATOMO_SITE_ID=1                          # idSite dans Matomo
+ * Laissés vides => Matomo et la bannière restent désactivés.
+ */
+Config::define('MATOMO_URL', env('MATOMO_URL') ?: '');
+Config::define('MATOMO_SITE_ID', env('MATOMO_SITE_ID') ?: '');
+/**
  * Custom Content Directory
  */
 Config::define('CONTENT_DIR', '/app');
@@ -151,7 +160,13 @@ Config::define('DISALLOW_FILE_EDIT', true);
 Config::define('DISALLOW_FILE_MODS', true);
 
 // Limit the number of post revisions
-Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? true);
+Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? 10);
+
+// Limit type interval autosave post
+Config::define('AUTOSAVE_INTERVAL', env('AUTOSAVE_INTERVAL') ??  360);
+
+// Active cache wp
+Config::define('WP_CACHE', env('WP_CACHE') ??  true);
 
 // Disable script concatenation
 Config::define('CONCATENATE_SCRIPTS', false);
