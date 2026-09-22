@@ -28,11 +28,24 @@
       "name": "wp-packages",
       "type": "composer",
       "url": "https://repo.wp-packages.org"
+    },
+    {
+      "name": "kevintessier-wpml",
+      "type": "vcs",
+      "url": "git@github.com:KevinTessier/wpml.git"
+    },
+    {
+      "name": "kevintessier-wpml-string-translation",
+      "type": "vcs",
+      "url": "git@github.com:KevinTessier/wpml-string-translation.git"
     }
+
   ],
   "require": {
     "php": ">=8.3",
     "composer/installers": "^2.0",
+    "kevintessier/sitepress-multilingual-cms": "^4.9",
+    "kevintessier/wpml-string-translation": "dev-main",
     "oscarotero/env": "^2.0",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",

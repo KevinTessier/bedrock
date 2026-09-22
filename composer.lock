@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "047bdb9dcab2805f9f583f5b0e85d5af",
+    "content-hash": "ac434fc6beec1d102288d038fff2ad6b",
     "packages": [
         {
             "name": "composer/installers",
@@ -213,6 +213,85 @@
                 }
             ],
             "time": "2026-08-24T09:06:52+00:00"
+        },
+        {
+            "name": "kevintessier/sitepress-multilingual-cms",
+            "version": "4.9.7",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:KevinTessier/wpml.git",
+                "reference": "bedf8f1ef961693e076a4f70be05f98f653b7b25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KevinTessier/wpml/zipball/bedf8f1ef961693e076a4f70be05f98f653b7b25",
+                "reference": "bedf8f1ef961693e076a4f70be05f98f653b7b25",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0",
+                "php": ">=7.0"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "installer-name": "sitepress-multilingual-cms"
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "OnTheGoSystems",
+                    "homepage": "http://www.onthegosystems.com/"
+                }
+            ],
+            "description": "WPML Multilingual CMS - plugin WordPress de traduction multilingue (miroir privé pour installation via Composer).",
+            "homepage": "https://wpml.org/",
+            "support": {
+                "source": "https://github.com/KevinTessier/wpml/tree/4.9.7",
+                "issues": "https://github.com/KevinTessier/wpml/issues"
+            },
+            "time": "2026-09-08T09:11:37+00:00"
+        },
+        {
+            "name": "kevintessier/wpml-string-translation",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:KevinTessier/wpml-string-translation.git",
+                "reference": "bd9607181c0b5f7c453932c69a84764f995ddaf1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KevinTessier/wpml-string-translation/zipball/bd9607181c0b5f7c453932c69a84764f995ddaf1",
+                "reference": "bd9607181c0b5f7c453932c69a84764f995ddaf1",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0",
+                "php": ">=7.0"
+            },
+            "default-branch": true,
+            "type": "wordpress-plugin",
+            "extra": {
+                "installer-name": "wpml-string-translation"
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "OnTheGoSystems",
+                    "homepage": "http://www.onthegosystems.com/"
+                }
+            ],
+            "description": "L'extension String Translation permet de traduire les chaînes d'interface directement depuis WordPress (miroir privé pour installation via Composer).",
+            "homepage": "https://wpml.org/",
+            "support": {
+                "source": "https://github.com/KevinTessier/wpml-string-translation/tree/main",
+                "issues": "https://github.com/KevinTessier/wpml-string-translation/issues"
+            },
+            "time": "2026-09-08T09:49:21+00:00"
         },
         {
             "name": "oscarotero/env",
@@ -5549,7 +5628,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "kevintessier/wpml-string-translation": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
